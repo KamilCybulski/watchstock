@@ -3,7 +3,7 @@ export default (state, action) => {
     case 'LOAD_SYMBOLS':
       return {
         ...state,
-        stockSymbols: action.payload,
+        stockSymbols: Object.values(action.payload),
       };
 
     default:
