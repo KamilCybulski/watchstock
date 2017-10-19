@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 
-import loadSymbols from '../actions/loadSymbols';
+import Main from './Main';
+
+import loadPrices from '../actions/loadPrices';
 
 
 class App extends React.Component {
@@ -11,8 +13,12 @@ class App extends React.Component {
     const db = firebase.database().ref('/symbols');
 
     this.symbolsListener = db.on('value', (snap) => {
-      this.props.loadSymbols(snap.val());
+      this.props.loadPrices(snap.val());
     });
+  }
+
+  componentWillUnmount = () => {
+    this.symbolsListener.off();
   }
 
   /**
@@ -20,21 +26,19 @@ class App extends React.Component {
    */
   render() {
     return (
-      <div>
-        App
-      </div>
+      <Main />
     );
   }
 }
 
 App.propTypes = {
-  loadSymbols: PropTypes.func.isRequired,
+  loadPrices: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = () => ({});
 const mapDispatchToProps = dispatch => ({
-  loadSymbols: (symbols) => {
-    dispatch(loadSymbols(symbols));
+  loadPrices: (symbols) => {
+    dispatch(loadPrices(symbols));
   },
 });
 
