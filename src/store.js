@@ -6,7 +6,7 @@ import reducer from './reducers/reducer';
 
 const initialState = {
   prices: undefined,
-  error: undefined,
+  errorOnLoadingPrices: undefined,
 };
 
 export default createStore(

@@ -9,7 +9,7 @@ export default (state, action) => {
     case 'LOAD_PRICES_REJECTED':
       return {
         ...state,
-        error: 'Ooops, looks like something went wrong while fetching the stock prices. Please try reloading the application',
+        errorOnLoadingPrices: 'Ooops, looks like something went wrong while fetching the stock prices. Please try reloading the application',
       };
 
     default:
