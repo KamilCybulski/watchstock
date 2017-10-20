@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { all, put, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 
-import { fetchStockDataSuccess, fetchStockDataFailure } from './actions/fetch-stock-data';
+import { fetchStockDataSuccess, fetchStockDataFailure } from '../actions/fetch-stock-data';
 
 /**
  * fetchStockData
@@ -26,16 +26,6 @@ export function* fetchStockData(action) {
  * Watch for FETCH_STOCK_DATA_REQUEST actions and call fetchStockData function
  * @returns {object} Iterator
  */
-export function* watchFetchStockData() {
+export default function* watchFetchStockData() {
   yield takeEvery('FETCH_STOCK_DATA_REQUEST', fetchStockData);
-}
-
-/**
- * rootSaga
- * @returns {object} Iterator
- */
-export default function* rootSaga() {
-  yield all([
-    watchFetchStockData(),
-  ]);
 }
