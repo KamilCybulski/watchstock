@@ -5,15 +5,15 @@ import { connect } from 'react-redux';
 
 import Main from './Main';
 
-import loadPrices from '../actions/loadPrices';
-
+import { fetchStockDataRequest } from '../actions/fetch-stock-data';
 
 class App extends React.Component {
   componentDidMount = () => {
     const db = firebase.database().ref('/symbols');
 
     this.symbolsListener = db.on('value', (snap) => {
-      this.props.loadPrices(snap.val());
+      const symbols = Object.values(snap.val());
+      this.props.fetchStockData(symbols);
     });
   }
 
@@ -32,13 +32,13 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  loadPrices: PropTypes.func.isRequired,
+  fetchStockData: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = () => ({});
 const mapDispatchToProps = dispatch => ({
-  loadPrices: (symbols) => {
-    dispatch(loadPrices(symbols));
+  fetchStockData: (symbols) => {
+    dispatch(fetchStockDataRequest(symbols));
   },
 });
 

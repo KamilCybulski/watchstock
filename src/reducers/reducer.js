@@ -1,15 +1,18 @@
 export default (state, action) => {
   switch (action.type) {
-    case 'LOAD_PRICES_FULFILLED':
+    case 'FETCH_STOCK_DATA_SUCCESS':
       return {
         ...state,
-        prices: action.payload,
+        stocks: action.payload,
       };
 
-    case 'LOAD_PRICES_REJECTED':
+    case 'FETCH_STOCK_DATA_FAILURE':
       return {
         ...state,
-        errorOnLoadingPrices: 'Ooops, looks like something went wrong while fetching the stock prices. Please try reloading the application',
+        errors: {
+          ...state.errors,
+          onStockDataFetch: true,
+        },
       };
 
     default:

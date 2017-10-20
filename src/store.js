@@ -1,16 +1,25 @@
 import { createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
-import promise from 'redux-promise-middleware';
 
+import rootSaga from './sagas';
 import reducer from './reducers/reducer';
 
+const sagaMiddleware = createSagaMiddleware();
 const initialState = {
-  prices: undefined,
-  errorOnLoadingPrices: undefined,
+  stocks: Object.create(null),
+  errors: {
+    onStockDataFetch: false,
+    stockDoesntExist: false,
+  },
 };
 
-export default createStore(
+const store = createStore(
   reducer,
   initialState,
-  applyMiddleware(logger, promise()),
+  applyMiddleware(sagaMiddleware, logger),
 );
+
+sagaMiddleware.run(rootSaga);
+
+export default store;
