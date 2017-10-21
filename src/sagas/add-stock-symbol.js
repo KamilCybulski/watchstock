@@ -1,7 +1,10 @@
 import firebase from 'firebase';
+import axios from 'axios';
 import { put, takeEvery } from 'redux-saga/effects';
-
-import { addStockSymbolSuccess, addStockSymbolFailure } from '../actions/add-stock-symbol';
+import {
+  addStockSymbolSuccess,
+  addStockSymbolFailureDB,
+  addStockSymbolFailureInvalid } from '../actions/add-stock-symbol';
 
 
 /**
@@ -13,12 +16,18 @@ import { addStockSymbolSuccess, addStockSymbolFailure } from '../actions/add-sto
  */
 export function* addStockSymbol(action) {
   try {
-    console.log('called yo!');
-    const newRef = yield firebase.database().ref('/symbols').push();
-    yield newRef.set(action.payload);
-    yield put(addStockSymbolSuccess());
+    const url = `https://api.iextrading.com/1.0/stock/${action.payload}/price`;
+    yield axios.get(url);
+
+    try {
+      const newRef = yield firebase.database().ref('/symbols').push();
+      yield newRef.set(action.payload);
+      yield put(addStockSymbolSuccess());
+    } catch (e) {
+      yield put(addStockSymbolFailureDB());
+    }
   } catch (e) {
-    yield put(addStockSymbolFailure());
+    yield put(addStockSymbolFailureInvalid());
   }
 }
 

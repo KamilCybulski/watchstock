@@ -10,6 +10,7 @@ const initialState = {
   stocks: Object.create(null),
   errors: {
     onStockDataFetch: false,
+    onStockSymbolSave: false,
     stockDoesntExist: false,
   },
 };
