@@ -32,7 +32,7 @@ export function* addStockSymbol(action) {
 }
 
 /**
- * watchStockSymbol
+ * watchAddStockSymbol
  * Watch for ADD_STOCK_SYMBOL_REQUEST action and call addStockSymbol function.
  * @returns {object} Iterator
  */

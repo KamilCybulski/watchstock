@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
 
 import { addStockSymbolRequest } from '../actions/add-stock-symbol';
+import { removeStockSymbolRequest } from '../actions/remove-stock-symbol';
 
 
 class Tester extends React.Component {
@@ -22,9 +23,14 @@ class Tester extends React.Component {
     this.setState({ symbol: e.target.value });
   }
 
-  handleClick = () => {
+  addStock = () => {
     this.props.addStockSymbol(this.state.symbol);
   }
+
+  removeStock = () => {
+    this.props.removeStockSymbol(this.state.symbol);
+  }
+
 
   /**
    * @returns {object} React element
@@ -43,9 +49,15 @@ class Tester extends React.Component {
           />
           <Button
             bsStyle="primary"
-            onClick={this.handleClick}
+            onClick={this.addStock}
           >
             Send this stuff
+          </Button>
+          <Button
+            bsStyle="danger"
+            onClick={this.removeStock}
+          >
+            Remove this stuff.
           </Button>
         </FormGroup>
       </div>
@@ -55,12 +67,16 @@ class Tester extends React.Component {
 
 Tester.propTypes = {
   addStockSymbol: PropTypes.func.isRequired,
+  removeStockSymbol: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = () => ({});
 const mapDispatchToProps = dispatch => ({
   addStockSymbol: (symbol) => {
     dispatch(addStockSymbolRequest(symbol));
+  },
+  removeStockSymbol: (symbol) => {
+    dispatch(removeStockSymbolRequest(symbol));
   },
 });
 
