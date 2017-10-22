@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import axios from 'axios';
-import { put, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery, call } from 'redux-saga/effects';
 import {
   addStockSymbolSuccess,
   addStockSymbolFailureDB,
@@ -17,11 +17,14 @@ import {
 export function* addStockSymbol(action) {
   try {
     const url = `https://api.iextrading.com/1.0/stock/${action.payload}/price`;
-    yield axios.get(url);
+    yield call(axios.get, url);
 
     try {
-      const newRef = yield firebase.database().ref('/symbols').push();
-      yield newRef.set(action.payload);
+      let newRef = yield call(firebase.database);
+      newRef = yield call([newRef, 'ref'], '/symbols');
+      newRef = yield call([newRef, 'push']);
+
+      yield call([newRef, newRef.set], action.payload);
       yield put(addStockSymbolSuccess());
     } catch (e) {
       yield put(addStockSymbolFailureDB());
