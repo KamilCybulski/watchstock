@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery, call } from 'redux-saga/effects';
 
 import { fetchStockDataSuccess, fetchStockDataFailure } from '../actions/fetch-stock-data';
 
@@ -14,7 +14,7 @@ export function* fetchStockData(action) {
   try {
     const symbolsString = action.payload.join(',');
     const url = `https://api.iextrading.com/1.0/stock/market/batch?symbols=${symbolsString}&types=price`;
-    const stockData = yield axios.get(url);
+    const stockData = yield call(axios.get, url);
 
     yield put(fetchStockDataSuccess(stockData.data));
   } catch (e) {
