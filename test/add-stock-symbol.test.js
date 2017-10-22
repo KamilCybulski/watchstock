@@ -54,6 +54,7 @@ describe('addStockSymbol saga with valid symbol', () => {
       CALL: expect.objectContaining({
         args: expect.arrayContaining(['aapl']),
         context: expect.stringMatching('https://test-project-159e8.firebaseio.com/symbols'),
+        fn: expect.any(Function),
       }),
     }));
   });
