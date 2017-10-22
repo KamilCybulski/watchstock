@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import { put, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery, call } from 'redux-saga/effects';
 import {
   removeStockSymbolSuccess,
   removeStockSymbolFailure } from '../actions/remove-stock-symbol';
@@ -10,15 +10,19 @@ import {
  * Remove provided stock symbol from the database.
  * @returns {object} Iterator
  */
-function* removeStockSymbol(action) {
+export function* removeStockSymbol(action) {
   try {
-    const ref = firebase.database().ref('/symbols');
-    yield ref.orderByValue()
-      .equalTo(action.payload)
-      .once('value', (snap) => {
-        const target = Object.keys(snap.val())[0];
-        ref.child(target).remove();
-      });
+    const newRef = firebase.database()
+      .ref('/symbols')
+      .orderByValue()
+      .equalTo(action.payload);
+
+    const callback = (snap) => {
+      const target = Object.keys(snap.val())[0];
+      firebase.database().ref('/symbols').child(target).remove();
+    };
+
+    yield call([newRef, 'once'], 'value', callback);
     yield put(removeStockSymbolSuccess());
   } catch (e) {
     yield put(removeStockSymbolFailure());
