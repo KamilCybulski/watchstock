@@ -20,10 +20,7 @@ export function* addStockSymbol(action) {
     yield call(axios.get, url);
 
     try {
-      let newRef = yield call(firebase.database);
-      newRef = yield call([newRef, 'ref'], '/symbols');
-      newRef = yield call([newRef, 'push']);
-
+      const newRef = firebase.database().ref('/symbols').push();
       yield call([newRef, newRef.set], action.payload);
       yield put(addStockSymbolSuccess());
     } catch (e) {
