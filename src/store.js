@@ -7,7 +7,7 @@ import reducer from './reducers/reducer';
 
 const sagaMiddleware = createSagaMiddleware();
 const initialState = {
-  stocks: Object.create(null),
+  stocks: null,
   errors: {
     onStockDataFetch: false,
     onStockSymbolSave: false,

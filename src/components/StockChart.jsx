@@ -1,12 +1,34 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import Tester from '../containers/Tester';
+import ChartControlls from './ChartControlls';
+import ChartGraph from './ChartGraph';
+import StockList from '../containers/StockList';
 
-const StockChart = () => (
+const StockChart = ({ data }) => (
   <div>
-    This is StockChart Component.
-    <Tester />
+    {!data
+      ? null
+      :
+      <div>
+        <ChartControlls />
+        <ChartGraph />
+        <StockList />
+      </div>}
   </div>
 );
 
-export default StockChart;
+StockChart.defaultProps = {
+  data: null,
+};
+
+StockChart.propTypes = {
+  data: PropTypes.objectOf(PropTypes.object),
+};
+
+const mapStateToProps = state => ({
+  data: state.stocks,
+});
+
+export default connect(mapStateToProps)(StockChart);

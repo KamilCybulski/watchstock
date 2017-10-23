@@ -4,6 +4,7 @@ import firebase from 'firebase';
 import { connect } from 'react-redux';
 
 import Main from './Main';
+import Footer from '../components/Footer';
 
 import { fetchStockDataRequest } from '../actions/fetch-stock-data';
 
@@ -26,7 +27,10 @@ class App extends React.Component {
    */
   render() {
     return (
-      <Main />
+      <div>
+        <Main />
+        <Footer />
+      </div>
     );
   }
 }
