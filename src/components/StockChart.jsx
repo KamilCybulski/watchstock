@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import Loader from '../components/Loader';
 import ChartControlls from './ChartControlls';
 import ChartGraph from './ChartGraph';
 import StockList from '../containers/StockList';
@@ -9,7 +10,7 @@ import StockList from '../containers/StockList';
 const StockChart = ({ data }) => (
   <div>
     {!data
-      ? null
+      ? <Loader />
       :
       <div>
         <ChartControlls />

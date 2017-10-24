@@ -30,7 +30,7 @@ module.exports = {
         loaders: ['babel-loader'],
       },
       {
-        test: /.scss$/,
+        test: /\.scss$/,
         loader: 'style-loader!css-loader!sass-loader',
       },
     ],
@@ -38,10 +38,6 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-  // output: {
-  //   filename: 'index.js',
-  //   path: path.join(__dirname, '/build'),
-  // },
   plugins: [
     HtmlWebpackPluginConfig,
     new webpack.HotModuleReplacementPlugin(),
