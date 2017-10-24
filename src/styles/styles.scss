@@ -22,3 +22,11 @@ body {
   min-height: 400px;
   @include flex-column-nowrap();
 }
+
+.loader {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
