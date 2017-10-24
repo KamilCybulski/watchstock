@@ -1,0 +1,6 @@
+@mixin flex-column-nowrap() {
+  display:flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+}

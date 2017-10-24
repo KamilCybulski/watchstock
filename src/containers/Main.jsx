@@ -7,8 +7,7 @@ import ErrorMessage from '../components/ErrorMessage';
 
 
 const Main = ({ showErrorMsg }) => (
-  <div>
-    This is Main
+  <main className="main">
     {
       showErrorMsg
         ? <ErrorMessage
@@ -16,7 +15,7 @@ const Main = ({ showErrorMsg }) => (
         />
         : <StockChart />
     }
-  </div>
+  </main>
 );
 
 Main.propTypes = {

@@ -1,1 +1,24 @@
 @import 'reset.scss';
+@import 'variables.scss';
+@import 'mixins.scss';
+
+body {
+  color: white;
+}
+
+.background {
+  width: 100vw;
+  height: 100vh;
+  background: $light-grey;
+  background: radial-gradient($bright-grey, $light-grey);
+  @include flex-column-nowrap();
+}
+
+
+.main {
+  background-color: $dark-grey;
+  width: 100%;
+  max-width: 700px;
+  min-height: 400px;
+  @include flex-column-nowrap();
+}
