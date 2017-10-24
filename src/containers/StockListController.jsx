@@ -30,28 +30,30 @@ class StockListControler extends React.Component {
    */
   render() {
     return (
-      <div>
-        <FormGroup>
-          <ControlLabel>Add stock:</ControlLabel>
-          <InputGroup>
-            <FormControl
-              type="text"
-              value={this.state.text}
-              placeholder="Stock's symbol"
-              onChange={this.handleChange}
-            />
-            <InputGroup.Button>
-              <Button bsStyle="success" onClick={this.addStock}>
-                search
-              </Button>
-            </InputGroup.Button>
-          </InputGroup>
-        </FormGroup>
-        <p>
-          {this.props.displayInvalidSymbolError
-            ? 'Invalid symbol'
-            : null}
-        </p>
+      <div className="stock-list__item-container">
+        <div className="stock-list__item-controler">
+          <FormGroup>
+            <ControlLabel>Add stock:</ControlLabel>
+            <InputGroup>
+              <FormControl
+                type="text"
+                value={this.state.text}
+                placeholder="Stock's symbol"
+                onChange={this.handleChange}
+              />
+              <InputGroup.Button>
+                <Button bsStyle="success" onClick={this.addStock}>
+                  search
+                </Button>
+              </InputGroup.Button>
+            </InputGroup>
+          </FormGroup>
+          <p>
+            {this.props.displayInvalidSymbolError
+              ? 'Invalid symbol'
+              : null}
+          </p>
+        </div>
       </div>
     );
   }

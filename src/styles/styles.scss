@@ -4,13 +4,12 @@
 
 body {
   color: white;
+  background: $light-grey;
+  background-color: $light-grey;
 }
 
 .background {
   width: 100vw;
-  height: 100vh;
-  background: $light-grey;
-  background: radial-gradient($bright-grey, $light-grey);
   @include flex-column-nowrap();
 }
 
@@ -18,8 +17,10 @@ body {
 .main {
   background-color: $dark-grey;
   width: 100%;
-  max-width: 700px;
+  max-width: 1200px;
   min-height: 400px;
+  margin-top: 60px;
+  margin-bottom: 60px;
   @include flex-column-nowrap();
 }
 
@@ -29,4 +30,62 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.chart-controls {
+  box-sizing: border-box;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+}
+
+.chart-graph {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 230px;
+  padding: 10px;
+  @include flex-column-nowrap();
+}
+
+.stock-list {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.stock-list__item-container {
+  width: 100%;
+  height: 120px;
+  padding: 10px;
+
+  @media screen and (min-width: 768px) {
+    width: 50%;
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: 393px;
+  }
+}
+
+.stock-list__item {
+  width: 100%;
+  height: 100%;
+  border: 1px solid pink;
+}
+
+.stock-list__item-controler {
+  @extend .stock-list__item;
+}
+
+.footer {
+  margin-top: 30px;
+  margin-bottom: 70px;
 }

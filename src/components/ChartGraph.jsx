@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ChartGraph = () => (
-  <div>
+  <div className="chart-graph">
     This is ChartGraph
   </div>
 );

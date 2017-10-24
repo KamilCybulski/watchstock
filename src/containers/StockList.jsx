@@ -7,7 +7,7 @@ import StockListItem from '../components/StockListItem';
 
 
 const StockList = ({ data }) => (
-  <div>
+  <div className="stock-list">
     {Object.entries(data).map(stock => (
       <StockListItem name={stock[0]} />
     ))}

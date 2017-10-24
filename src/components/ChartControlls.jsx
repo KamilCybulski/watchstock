@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ChartControlls = () => (
-  <div>
+  <div className="chart-controls">
     This is ChartControlls
   </div>
 );
