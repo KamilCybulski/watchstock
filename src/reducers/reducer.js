@@ -33,6 +33,16 @@ export default (state, action) => {
         },
       };
 
+    case 'CLEAR_ALL_ERRORS':
+      return {
+        ...state,
+        errors: {
+          onStockDataFetch: false,
+          onStockSymbolSave: false,
+          stockDoesntExist: false,
+        },
+      };
+
     default:
       return { ...state };
   }

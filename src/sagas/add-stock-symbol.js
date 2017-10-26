@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 import axios from 'axios';
 import { put, takeEvery, call } from 'redux-saga/effects';
+import clearAllErrors from '../actions/clear-all-errors';
 import {
   addStockSymbolSuccess,
   addStockSymbolFailureDB,
@@ -15,6 +16,7 @@ import {
  * @returns {object} Iterator
  */
 export function* addStockSymbol(action) {
+  yield put(clearAllErrors());
   const symbol = action.payload.toUpperCase();
   try {
     const url = `https://api.iextrading.com/1.0/stock/${symbol}/price`;
