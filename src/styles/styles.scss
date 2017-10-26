@@ -63,7 +63,7 @@ body {
 
 .stock-list__item-container {
   width: 100%;
-  height: 120px;
+  height: 160px;
   padding: 10px;
 
   @media screen and (min-width: 768px) {
@@ -78,7 +78,8 @@ body {
 .stock-list__item {
   width: 100%;
   height: 100%;
-  border: 1px solid pink;
+  background-color: $dark-white;
+  color: black;
 }
 
 .stock-list__item-controler {
