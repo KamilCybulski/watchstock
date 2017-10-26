@@ -15,13 +15,14 @@ import {
  * @returns {object} Iterator
  */
 export function* addStockSymbol(action) {
+  const symbol = action.payload.toUpperCase();
   try {
-    const url = `https://api.iextrading.com/1.0/stock/${action.payload}/price`;
+    const url = `https://api.iextrading.com/1.0/stock/${symbol}/price`;
     yield call(axios.get, url);
 
     try {
       const newRef = firebase.database().ref('/symbols').push();
-      yield call([newRef, newRef.set], action.payload);
+      yield call([newRef, newRef.set], symbol);
       yield put(addStockSymbolSuccess());
     } catch (e) {
       yield put(addStockSymbolFailureDB());

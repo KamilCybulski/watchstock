@@ -45,14 +45,14 @@ describe('addStockSymbol saga with valid symbol', () => {
   const gen = addStockSymbol(action);
 
   it('Checks if stock symbol exists', () => {
-    const url = 'https://api.iextrading.com/1.0/stock/aapl/price';
+    const url = 'https://api.iextrading.com/1.0/stock/AAPL/price';
     expect(gen.next().value).toEqual(call(axios.get, url));
   });
 
   it('Creates new entry in firebase db', () => {
     expect(gen.next().value).toEqual(expect.objectContaining({
       CALL: expect.objectContaining({
-        args: expect.arrayContaining(['aapl']),
+        args: expect.arrayContaining(['AAPL']),
         context: expect.stringMatching('https://test-project-159e8.firebaseio.com/symbols'),
         fn: expect.any(Function),
       }),
@@ -66,11 +66,11 @@ describe('addStockSymbol saga with valid symbol', () => {
 
 
 describe('addStockSymbol saga with an invalid symbol', () => {
-  const action = addStockSymbolRequest('aaplepefew');
+  const action = addStockSymbolRequest('AAPLERFEW');
   const gen = addStockSymbol(action);
 
   it('Checks if stock symbol exists', () => {
-    const url = 'https://api.iextrading.com/1.0/stock/aaplepefew/price';
+    const url = 'https://api.iextrading.com/1.0/stock/AAPLERFEW/price';
     expect(gen.next().value).toEqual(call(axios.get, url));
   });
 
