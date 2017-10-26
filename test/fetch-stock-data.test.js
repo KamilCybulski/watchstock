@@ -36,7 +36,7 @@ describe('fetchStockData saga success', () => {
   const gen = fetchStockData(action);
 
   it('Calls iex api to get stock data', () => {
-    const url = 'https://api.iextrading.com/1.0/stock/market/batch?symbols=aapl,goog&types=price';
+    const url = 'https://api.iextrading.com/1.0/stock/market/batch?symbols=aapl,goog&types=company,chart&range=1y';
 
     expect(gen.next().value).toEqual(call(axios.get, url));
   });

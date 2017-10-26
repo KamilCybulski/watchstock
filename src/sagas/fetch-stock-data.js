@@ -13,7 +13,7 @@ import { fetchStockDataSuccess, fetchStockDataFailure } from '../actions/fetch-s
 export function* fetchStockData(action) {
   try {
     const symbolsString = action.payload.join(',');
-    const url = `https://api.iextrading.com/1.0/stock/market/batch?symbols=${symbolsString}&types=chart&range=1y`;
+    const url = `https://api.iextrading.com/1.0/stock/market/batch?symbols=${symbolsString}&types=company,chart&range=1y`;
     const stockData = yield call(axios.get, url);
 
     yield put(fetchStockDataSuccess(stockData.data));
