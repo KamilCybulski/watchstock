@@ -3,13 +3,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import StockListControler from './StockListController';
-import StockListItem from '../components/StockListItem';
+import Card from '../components/Card';
 
 
 const StockList = ({ data }) => (
   <div className="stock-list">
-    {Object.entries(data).map(stock => (
-      <StockListItem name={stock[0]} />
+    {Object.values(data).map(stock => (
+      <Card
+        key={stock.company.symbol}
+        symbol={stock.company.symbol}
+        name={stock.company.companyName}
+        sector={stock.company.sector}
+        industry={stock.company.industry}
+      />
     ))}
     <StockListControler />
   </div>
