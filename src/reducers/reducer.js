@@ -43,6 +43,15 @@ export default (state, action) => {
         },
       };
 
+    case 'SYMBOL_TRACKED_ERROR':
+      return {
+        ...state,
+        errors: {
+          ...state.errors,
+          symbolAlreadyTracked: true,
+        },
+      };
+
     default:
       return { ...state };
   }

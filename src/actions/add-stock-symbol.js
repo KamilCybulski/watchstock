@@ -1,6 +1,7 @@
-export const addStockSymbolRequest = symbol => ({
+export const addStockSymbolRequest = (symbol, currentSymbols) => ({
   type: 'ADD_STOCK_SYMBOL_REQUEST',
-  payload: symbol,
+  symbol,
+  currentSymbols,
 });
 
 export const addStockSymbolSuccess = () => ({

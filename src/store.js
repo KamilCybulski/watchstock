@@ -12,6 +12,7 @@ const initialState = {
     onStockDataFetch: false,
     onStockSymbolSave: false,
     stockDoesntExist: false,
+    symbolAlreadyTracked: false,
   },
 };
 

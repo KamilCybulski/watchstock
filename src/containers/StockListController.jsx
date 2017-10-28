@@ -22,7 +22,7 @@ class StockListControler extends React.Component {
   }
 
   addStock = () => {
-    this.props.addStockSymbol(this.state.text);
+    this.props.addStockSymbol(this.state.text, this.props.stocks);
   }
 
   /**
@@ -52,6 +52,9 @@ class StockListControler extends React.Component {
             {this.props.displayInvalidSymbolError
               ? 'Invalid symbol'
               : null}
+            {this.props.symbolTrackedError
+              ? 'Cannot add the same stock twice'
+              : null}
           </p>
         </div>
       </div>
@@ -60,16 +63,20 @@ class StockListControler extends React.Component {
 }
 
 StockListControler.propTypes = {
+  stocks: PropTypes.arrayOf(PropTypes.string).isRequired,
   addStockSymbol: PropTypes.func.isRequired,
   displayInvalidSymbolError: PropTypes.bool.isRequired,
+  symbolTrackedError: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
+  stocks: Object.keys(state.stocks),
   displayInvalidSymbolError: state.errors.stockDoesntExist,
+  symbolTrackedError: state.errors.symbolAlreadyTracked,
 });
 const mapDispatchToProps = dispatch => ({
-  addStockSymbol: (symbol) => {
-    dispatch(addStockSymbolRequest(symbol));
+  addStockSymbol: (symbol, currentSymbols) => {
+    dispatch(addStockSymbolRequest(symbol, currentSymbols));
   },
 });
 
