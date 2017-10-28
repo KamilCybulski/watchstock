@@ -4,6 +4,9 @@ import { call, put } from 'redux-saga/effects';
 import firebaseTestConfig from '../config/firebaseTestConfig';
 import { addStockSymbol } from '../src/sagas/add-stock-symbol';
 import {
+  clearAllErrors,
+  symbolTrackedError } from '../src/actions/error-actions';
+import {
   addStockSymbolRequest,
   addStockSymbolSuccess,
   addStockSymbolFailureDB,
@@ -14,10 +17,11 @@ firebase.initializeApp(firebaseTestConfig);
 
 describe('Action creators work as intended', () => {
   it('Request action', () => {
-    expect(addStockSymbolRequest('goog')).toEqual(expect.objectContaining({
+    expect(addStockSymbolRequest('goog', ['FB', 'MMM'])).toEqual({
       type: 'ADD_STOCK_SYMBOL_REQUEST',
-      payload: 'goog',
-    }));
+      symbol: 'goog',
+      currentSymbols: ['FB', 'MMM'],
+    });
   });
 
   it('Success action', () => {
@@ -40,9 +44,13 @@ describe('Action creators work as intended', () => {
 });
 
 
-describe('addStockSymbol saga with valid symbol', () => {
-  const action = addStockSymbolRequest('aapl');
+describe('addStockSymbol saga with valid, non-tracked symbol', () => {
+  const action = addStockSymbolRequest('aapl', ['goog', 'fb']);
   const gen = addStockSymbol(action);
+
+  it('Clears all errors', () => {
+    expect(gen.next().value).toEqual(put(clearAllErrors()));
+  });
 
   it('Checks if stock symbol exists', () => {
     const url = 'https://api.iextrading.com/1.0/stock/AAPL/price';
@@ -65,9 +73,13 @@ describe('addStockSymbol saga with valid symbol', () => {
 });
 
 
-describe('addStockSymbol saga with an invalid symbol', () => {
-  const action = addStockSymbolRequest('AAPLERFEW');
+describe('addStockSymbol saga with an invalid, non-tracked symbol', () => {
+  const action = addStockSymbolRequest('AAPLERFEW', ['AAPL', 'GOOG']);
   const gen = addStockSymbol(action);
+
+  it('Clears all errors', () => {
+    expect(gen.next().value).toEqual(put(clearAllErrors()));
+  });
 
   it('Checks if stock symbol exists', () => {
     const url = 'https://api.iextrading.com/1.0/stock/AAPLERFEW/price';
@@ -78,3 +90,18 @@ describe('addStockSymbol saga with an invalid symbol', () => {
     expect(gen.throw().value).toEqual(put(addStockSymbolFailureInvalid()));
   });
 });
+
+
+describe('addStockSaga with a valid, already tracked symbol', () => {
+  const action = addStockSymbolRequest('AAPL', ['AAPL', 'GOOG']);
+  const gen = addStockSymbol(action);
+
+  it('Clears all errors', () => {
+    expect(gen.next().value).toEqual(put(clearAllErrors()));
+  });
+
+  it('Dispatches a symbolTrackedError action', () => {
+    expect(gen.next().value).toEqual(put(symbolTrackedError()));
+  });
+});
+
