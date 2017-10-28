@@ -12,11 +12,15 @@ import { fetchStockDataSuccess, fetchStockDataFailure } from '../actions/fetch-s
  */
 export function* fetchStockData(action) {
   try {
-    const symbolsString = action.payload.join(',');
-    const url = `https://api.iextrading.com/1.0/stock/market/batch?symbols=${symbolsString}&types=company,chart&range=1y`;
-    const stockData = yield call(axios.get, url);
+    if (action.payload.length === 0) {
+      yield put(fetchStockDataSuccess({}));
+    } else {
+      const symbolsString = action.payload.join(',');
+      const url = `https://api.iextrading.com/1.0/stock/market/batch?symbols=${symbolsString}&types=company,chart&range=1y`;
+      const stockData = yield call(axios.get, url);
 
-    yield put(fetchStockDataSuccess(stockData.data));
+      yield put(fetchStockDataSuccess(stockData.data));
+    }
   } catch (e) {
     yield put(fetchStockDataFailure(e.message));
   }

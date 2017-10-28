@@ -13,8 +13,13 @@ class App extends React.Component {
     const db = firebase.database().ref('/symbols');
 
     this.symbolsListener = db.on('value', (snap) => {
-      const symbols = Object.values(snap.val());
-      this.props.fetchStockData(symbols);
+      const data = snap.val();
+      if (!data) {
+        this.props.fetchStockData([]);
+      } else {
+        const symbols = Object.values(data);
+        this.props.fetchStockData(symbols);
+      }
     });
   }
 

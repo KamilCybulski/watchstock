@@ -24,7 +24,8 @@ export function* addStockSymbol(action) {
 
     try {
       const newRef = firebase.database().ref('/symbols').push();
-      yield call([newRef, newRef.set], symbol);
+      // yield call([newRef, newRef.set], symbol);
+      newRef.set(symbol);
       yield put(addStockSymbolSuccess());
     } catch (e) {
       yield put(addStockSymbolFailureDB());
