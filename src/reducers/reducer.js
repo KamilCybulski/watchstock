@@ -40,6 +40,7 @@ export default (state, action) => {
           onStockDataFetch: false,
           onStockSymbolSave: false,
           stockDoesntExist: false,
+          symbolAlreadyTracked: false,
         },
       };
 
