@@ -28,7 +28,9 @@ const ChartGraph = ({ data, stocks }) => (
           padding={{ top: 10 }}
         />
         <CartesianGrid vertical={false} />
-        <Tooltip />
+        <Tooltip
+          labelStyle={{ color: '#000', fontSize: '14px', marginBottom: '5px' }}
+        />
         {stocks.map((stock, i) => (
           <Line
             key={stock}
