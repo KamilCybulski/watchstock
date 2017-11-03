@@ -53,6 +53,12 @@ export default (state, action) => {
         },
       };
 
+    case 'CHANGE_TIME_PERIOD_DISPLAYED':
+      return {
+        ...state,
+        timePeriodDisplayed: action.payload,
+      };
+
     default:
       return { ...state };
   }

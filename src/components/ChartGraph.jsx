@@ -6,6 +6,12 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianG
 import transformData from '../lib/transform-data';
 import getLineColor from '../lib/get-line-color';
 
+const take = (arr, days) => (
+  days === 365
+    ? arr
+    : arr.slice(-days)
+);
+
 
 const ChartGraph = ({ data, stocks }) => (
   <div className="chart-graph">
