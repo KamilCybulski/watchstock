@@ -5,19 +5,13 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianG
 
 import transformData from '../lib/transform-data';
 import getLineColor from '../lib/get-line-color';
+import takeNLast from '../lib/takeNLast';
 
-const take = (arr, days) => (
-  days === 365
-    ? arr
-    : arr.slice(-days)
-);
-
-
-const ChartGraph = ({ data, stocks }) => (
+const ChartGraph = ({ data, stocks, timePeriodDisplayed }) => (
   <div className="chart-graph">
     <ResponsiveContainer width="99%" height={320} debounce={1}>
       <LineChart
-        data={data}
+        data={takeNLast(data, timePeriodDisplayed)}
       >
         <YAxis
           axisLine={false}
@@ -55,11 +49,13 @@ const ChartGraph = ({ data, stocks }) => (
 ChartGraph.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   stocks: PropTypes.arrayOf(PropTypes.string).isRequired,
+  timePeriodDisplayed: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => ({
   data: transformData(Object.values(state.stocks)),
   stocks: Object.keys(state.stocks),
+  timePeriodDisplayed: state.timePeriodDisplayed,
 });
 
 export default connect(mapStateToProps)(ChartGraph);
