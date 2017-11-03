@@ -25,6 +25,10 @@ body {
   @include flex-column-nowrap();
 }
 
+.fullwidth-container {
+  width: 100%;
+}
+
 .loader {
   width: 300px;
   height: 300px;

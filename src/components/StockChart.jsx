@@ -8,11 +8,11 @@ import ChartGraph from './ChartGraph';
 import StockList from '../containers/StockList';
 
 const StockChart = ({ data }) => (
-  <div>
+  <div className="fullwidth-container">
     {!data
       ? <Loader />
       :
-      <div>
+      <div className="fullwidth-container">
         <ChartControlls />
         <ChartGraph />
         <StockList />
