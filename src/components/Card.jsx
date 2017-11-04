@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap';
+import { Button, Glyphicon } from 'react-bootstrap';
 
 import { removeStockSymbolRequest } from '../actions/remove-stock-symbol';
 
@@ -14,7 +14,7 @@ const Card = ({ symbol, name, sector, industry, remove }) => (
           bsStyle="danger"
           onClick={() => remove(symbol)}
         >
-          X
+          <Glyphicon glyph="remove" />
         </Button>
       </div>
       <h4 className="card__subtitle">{name}</h4>
