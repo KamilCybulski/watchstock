@@ -31,9 +31,11 @@ class StockListControler extends React.Component {
   render() {
     return (
       <div className="stock-list__item-container">
-        <div className="stock-list__item-controler">
+        <div className="stock-list__controler">
           <FormGroup>
-            <ControlLabel>Add stock:</ControlLabel>
+            <ControlLabel className="stock-list__controler__label">
+              Add stock:
+            </ControlLabel>
             <InputGroup>
               <FormControl
                 type="text"
@@ -48,7 +50,7 @@ class StockListControler extends React.Component {
               </InputGroup.Button>
             </InputGroup>
           </FormGroup>
-          <p>
+          <p className="stock-list__controler__warning">
             {this.props.displayInvalidSymbolError
               ? 'Invalid symbol'
               : null}

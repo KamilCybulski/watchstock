@@ -125,8 +125,17 @@ body {
   }
 }
 
-.stock-list__item-controler {
+.stock-list__controler {
   @extend .card;
+
+  &__label {
+    margin: 5px;
+  }
+
+  &__warning {
+    margin: 5px;
+    color: red;
+  }
 }
 
 .footer {
