@@ -6,6 +6,10 @@ import changePeriodDisplayed from '../actions/change-period-displayed';
 
 const TimeControler = ({ switchTo, currentPeriod, changePeriod }) => (
   <button
+    className={`timecontroler${switchTo === currentPeriod
+      ? ' timecontroler_active'
+      : ''}
+      `}
     onClick={() => {
       if (switchTo !== currentPeriod) {
         changePeriod(switchTo);
@@ -14,8 +18,8 @@ const TimeControler = ({ switchTo, currentPeriod, changePeriod }) => (
   >
     {
       switchTo === 365
-        ? 'Last year'
-        : `Last ${switchTo} days`
+        ? '1y'
+        : `${switchTo}d`
     }
   </button>
 );
