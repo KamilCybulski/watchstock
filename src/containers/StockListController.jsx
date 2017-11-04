@@ -30,6 +30,13 @@ class StockListControler extends React.Component {
     this.props.addStockSymbol(this.state.text, this.props.stocks);
   }
 
+  handleEnterKey = (e) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      this.addStock();
+    }
+  }
+
   /**
    * @returns {object} React Element
    */
@@ -47,6 +54,7 @@ class StockListControler extends React.Component {
                 value={this.state.text}
                 placeholder="Stock's symbol"
                 onChange={this.handleChange}
+                onKeyUp={this.handleEnterKey}
               />
               <InputGroup.Button>
                 <Button bsStyle="success" onClick={this.addStock}>
