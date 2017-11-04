@@ -21,7 +21,12 @@ class StockListControler extends React.Component {
     this.setState({ text: e.target.value });
   }
 
+  resetForm = () => {
+    this.setState({ text: '' });
+  }
+
   addStock = () => {
+    this.resetForm();
     this.props.addStockSymbol(this.state.text, this.props.stocks);
   }
 
