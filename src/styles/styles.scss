@@ -1,6 +1,7 @@
 @import 'reset.scss';
 @import 'variables.scss';
 @import 'mixins.scss';
+@import 'loader.scss';
 
 body {
   color: white;
@@ -27,14 +28,6 @@ body {
 
 .fullwidth-container {
   width: 100%;
-}
-
-.loader {
-  width: 300px;
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .chart-controls {
