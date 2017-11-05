@@ -41,6 +41,18 @@ describe('Action creators work as intended', () => {
       type: 'ADD_STOCK_SYMBOL_FAILURE_SYMBOL_INVALID',
     }));
   });
+
+  it('CLEAR_ALL_ERRORS action', () => {
+    expect(clearAllErrors()).toEqual({
+      type: 'CLEAR_ALL_ERRORS',
+    });
+  });
+
+  it('SYMBOL_TRACKED_ERROR action', () => {
+    expect(symbolTrackedError()).toEqual({
+      type: 'SYMBOL_TRACKED_ERROR',
+    });
+  });
 });
 
 
