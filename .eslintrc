@@ -19,6 +19,7 @@
             "MethodDefinition": true
         }
     }],
-    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-bitwise": ["error", { "allow": ["<<", ">>"] }]
   }
 }
