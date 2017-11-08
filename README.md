@@ -20,6 +20,6 @@ Firebase | Real-time database
 Webpack | Bundler
 Babel | Transpiler
 ESLint | Linter
-Jest | Test Framerowk
+Jest | Test Framework
 Enzyme | Testing Library for React
 
