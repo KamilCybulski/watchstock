@@ -18,6 +18,7 @@
             "FunctionDeclaration": true,
             "MethodDefinition": true
         }
-    }]
+    }],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
   }
 }
