@@ -31,14 +31,14 @@ const ChartGraph = ({ data, stocks, timePeriodDisplayed }) => (
         <Tooltip
           labelStyle={{ color: '#000', fontSize: '14px', marginBottom: '5px' }}
         />
-        {stocks.map((stock, i) => (
+        {stocks.map(stock => (
           <Line
             key={stock}
             type="monotone"
             dataKey={stock}
             dot={false}
             strokeWidth="2"
-            stroke={i > 12 ? undefined : getLineColor(i)}
+            stroke={getLineColor(stock)}
           />
         ))}
       </LineChart>

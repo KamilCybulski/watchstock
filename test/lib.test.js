@@ -4,8 +4,10 @@ import transformData from '../src/lib/transform-data';
 
 
 describe('getLineColor', () => {
-  it('When passed number [0, 12] returns a hex color string', () => {
-    expect(getLineColor(2)).toEqual(expect.stringMatching(/#[a-zA-Z0-9]{6}/));
+  it('When passed a string it returns a hex color string', () => {
+    expect(getLineColor('AAPL')).toEqual(expect.stringMatching(/#[a-fA-F0-9]{6}/));
+    expect(getLineColor('FB')).toEqual(expect.stringMatching(/#[a-fA-F0-9]{6}/));
+    expect(getLineColor('GOOG')).toEqual(expect.stringMatching(/#[a-fA-F0-9]{6}/));
   });
 });
 

@@ -20,6 +20,6 @@
         }
     }],
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-    "no-bitwise": ["error", { "allow": ["<<", ">>"] }]
+    "no-bitwise": ["error", { "allow": ["<<", ">>", "&"] }]
   }
 }

@@ -1,24 +1,26 @@
 /**
  * getLineColor
- * @param {number} i Array index (NOTE: should not be bigger then 12)
- * @description Return a different color based on given number
+ * @param {string} name String to generate color from
+ * @description Return a different color based on given string
  * @returns {string} Hexadecimal color string
  */
-export default (i) => {
-  const colors = [
-    '#8884d8',
-    '#82ca9d',
-    '#e91e63',
-    '#9c27b0',
-    '#ffff00',
-    '#81d4fa',
-    '#c62828',
-    '#ff9100',
-    '#64ffda',
-    '#76ff03',
-    '#fafafa',
-    '#f48fb1',
-  ];
+export default (name) => {
+  const createHash = (str) => {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return hash;
+  };
 
-  return colors[i];
+  const createColor = (hash) => {
+    let color = '#';
+    for (let i = 0; i < 3; i++) {
+      const value = (hash >> (i * 8)) & 0xFF;
+      color += `00${value.toString(16)}`.substr(-2);
+    }
+    return color;
+  };
+
+  return createColor(createHash(name));
 };
