@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import App from './containers/App';
 import store from './store';
 import './styles/styles.scss';
-import firebaseConfig from '../config/firebaseConfig';
+import firebaseConfig from '../config/firebase-config';
 
 
 const root = document.getElementById('root');
