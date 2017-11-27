@@ -6,10 +6,11 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.dev.js",
     "build": "webpack --config webpack.config.prod.js",
-    "test": "jest --verbose"
+    "test": "jest"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "./jest-setup.js"
+    "setupFiles": ["./jest-setup/shim.js"],
+    "setupTestFrameworkScriptFile": "./jest-setup/adapter.js"
   },
   "repository": {
     "type": "git",
