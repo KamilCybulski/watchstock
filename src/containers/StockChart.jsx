@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Loader from '../components/Loader';
-import ChartControlls from './ChartControlls';
-import ChartGraph from './ChartGraph';
-import StockList from '../containers/StockList';
+import ChartControlls from '../components/ChartControlls';
+import ChartGraph from '../components/ChartGraph';
+import StockList from './StockList';
 
 const StockChart = ({ data }) => (
   <div className="fullwidth-container">

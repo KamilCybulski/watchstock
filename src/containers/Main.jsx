@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import StockChart from '../components/StockChart';
+import StockChart from './StockChart';
 import ErrorMessage from '../components/ErrorMessage';
 
 
