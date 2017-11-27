@@ -4,7 +4,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import Main from '../src/containers/Main';
-import StockChart from '../src/components/StockChart';
+import StockChart from '../src/containers/StockChart';
 import ErrorMessage from '../src/components/ErrorMessage';
 
 const storeNoError = createStore(s => s, {
