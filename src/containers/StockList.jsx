@@ -4,19 +4,21 @@ import { connect } from 'react-redux';
 
 import StockListControler from './StockListController';
 import Card from '../components/Card';
+import MapArray from './MapArray';
 
+const map = stock => ({
+  key: stock.company.symbol,
+  symbol: stock.company.symbol,
+  name: stock.company.companyName,
+  sector: stock.company.sector,
+  industry: stock.company.industry,
+});
 
 const StockList = ({ data }) => (
   <div className="stock-list">
-    {Object.values(data).map(stock => (
-      <Card
-        key={stock.company.symbol}
-        symbol={stock.company.symbol}
-        name={stock.company.companyName}
-        sector={stock.company.sector}
-        industry={stock.company.industry}
-      />
-    ))}
+    <MapArray from={Object.values(data)} map={map}>
+      <Card />
+    </MapArray>
     <StockListControler />
   </div>
 );
